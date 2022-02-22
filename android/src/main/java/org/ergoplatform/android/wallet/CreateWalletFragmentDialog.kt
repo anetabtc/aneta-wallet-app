@@ -24,10 +24,10 @@ class CreateWalletFragmentDialog : FullScreenFragmentDialog() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        dialog?.window?.setFlags(
-            WindowManager.LayoutParams.FLAG_SECURE,
-            WindowManager.LayoutParams.FLAG_SECURE
-        )
+//        dialog?.window?.setFlags(
+//            WindowManager.LayoutParams.FLAG_SECURE,
+//            WindowManager.LayoutParams.FLAG_SECURE
+//        )
 
         // Inflate the layout for this fragment
         _binding = FragmentCreateWalletDialogBinding.inflate(inflater, container, false)
