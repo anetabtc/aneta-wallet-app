@@ -12,6 +12,7 @@
         android:layout_margin="@dimen/activity_horizontal_margin"
         android:clickable="true"
         android:focusable="true"
+        android:backgroundTint="@color/card_back"
         android:foreground="?android:attr/selectableItemBackground"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -26,7 +27,7 @@
                 android:layout_width="@dimen/big_icon_size"
                 android:layout_height="@dimen/big_icon_size"
                 android:contentDescription="@null"
-                android:src="@drawable/ic_wallet_24"
+                android:src="@drawable/aneta_wallet_logo"
                 app:layout_constraintBottom_toBottomOf="@id/wallet_fiat"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/wallet_name" />

@@ -9,7 +9,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
-        android:background="?attr/colorSurface"
+        android:background="@drawable/rectangle_tool_bar"
         android:elevation="2dp">
 
         <TextView
@@ -39,6 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:backgroundTint="@color/settings_card_color"
                 android:layout_margin="@dimen/activity_horizontal_margin">
 
                 <androidx.constraintlayout.widget.ConstraintLayout

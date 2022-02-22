@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name" translatable="false">Ergo Wallet</string>
+    <string name="app_name" translatable="false">Aneta Wallet</string>
+    <string name="app_version" translatable="false">version 1.0</string>
+    <string name="social_media_title" translatable="false">Find help on our social medias:</string>
     <string name="title_transactions">Transactions</string>
     <string name="title_wallets">Wallets</string>
     <string name="title_settings">Settings</string>

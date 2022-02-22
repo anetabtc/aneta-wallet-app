@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.findFragment
 import androidx.lifecycle.Lifecycle
@@ -14,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -81,7 +83,11 @@ class WalletFragment : Fragment() {
                         if (walletList.isEmpty()) View.GONE else View.VISIBLE
                     binding.emptyView.root.visibility =
                         if (walletList.isEmpty()) View.VISIBLE else View.GONE
+                    binding.ergoHeader.visibility = binding.swipeRefreshLayout.visibility
+                    val navView: BottomNavigationView = requireActivity().findViewById(R.id.nav_view)
+                    navView.visibility = binding.swipeRefreshLayout.visibility
                 })
+
 
         binding.emptyView.cardRestoreWallet.setOnClickListener {
             findNavController().navigate(R.id.restoreWalletFragmentDialog)
@@ -95,7 +101,6 @@ class WalletFragment : Fragment() {
             NavHostFragment.findNavController(requireParentFragment())
                 .navigate(R.id.createWalletDialog)
         }
-
         binding.buttonScan.setOnClickListener { (requireActivity() as? MainActivity)?.scanQrCode() }
 
         val nodeConnector = NodeConnector.getInstance()
@@ -177,6 +182,7 @@ class WalletFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.fragment_wallet, menu)
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -298,6 +304,7 @@ class WalletViewHolder(val binding: CardWalletBinding) : RecyclerView.ViewHolder
                     )
                 )
         }
+
 
         val launchUnfoldTokenFieldChange: (v: View) -> Unit = {
             GlobalScope.launch {
