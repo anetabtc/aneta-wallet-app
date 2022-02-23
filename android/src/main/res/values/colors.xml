@@ -10,7 +10,7 @@
     <color name="background">#E5E5E5</color>
     <color name="logo_back">#64B6E6</color>
     <color name="wallet_logo_back">#00FFFFFF</color>
-    <color name="card_back">#FFF9EC</color>
+    <color name="card_back">#FFFFFF</color>
     <color name="plus_card_back">#FFFFFF</color>
     <color name="main_text">#4087D1</color>
     <color name="icons">#4087D1</color>
@@ -31,6 +31,8 @@
     <color name="c1">#ECE4FF</color>
     <color name="c2">#BCD1FF</color>
     <color name="c3">#FFF5E1</color>
+    <color name="c4">#FFFFFF</color>
+    <color name="c5">#FFFFFF</color>
     <color name="hint_color">#6E000000</color>
     <color name="add_wallet_tool_text_color">#339AD3</color>
     <color name="settings_buttons_color">#FFFFFF</color>
@@ -42,4 +44,5 @@
     <color name="light_blue_A200">#FF40C4FF</color>
     <color name="light_blue_A400">#FF00B0FF</color>
     <color name="black_overlay">#66000000</color>
+    <color name="card_background">#FFFFFF</color>
 </resources>

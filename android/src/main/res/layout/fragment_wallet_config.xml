@@ -13,7 +13,7 @@
         android:elevation="2dp">
 
         <TextView
-            style="@style/TextAppearance.App.Headline1"
+            style="@style/TextAppearance.App.Headline2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -39,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:backgroundTint="@color/settings_card_color"
+                android:backgroundTint="@color/card_background"
                 android:layout_margin="@dimen/activity_horizontal_margin">
 
                 <androidx.constraintlayout.widget.ConstraintLayout

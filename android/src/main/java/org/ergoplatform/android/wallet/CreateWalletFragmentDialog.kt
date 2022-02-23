@@ -53,8 +53,9 @@ class CreateWalletFragmentDialog : FullScreenFragmentDialog() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.tvMnemonic.text =
-            ViewModelProvider(this).get(CreateWalletViewModel::class.java).mnemonic
+        val string: String = ViewModelProvider(this).get(CreateWalletViewModel::class.java).mnemonic
+        binding.tvMnemonic.text = string
+
     }
 
     override fun onDestroyView() {

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:background="@drawable/background_gradient"
     tools:context=".wallet.RestoreWalletFragmentDialog">
 
     <androidx.core.widget.NestedScrollView
@@ -15,8 +16,9 @@
         tools:visibility="visible">
 
         <androidx.cardview.widget.CardView
-            style="@style/width_match_parent_max_500"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/card_background"
             android:layout_gravity="center"
             android:layout_margin="@dimen/activity_horizontal_margin">
 

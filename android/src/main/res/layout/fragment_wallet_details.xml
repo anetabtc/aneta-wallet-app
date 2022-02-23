@@ -9,12 +9,12 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
-        android:background="?attr/colorSurface"
+        android:background="@drawable/rectangle_tool_bar"
         android:elevation="2dp">
 
         <TextView
             android:id="@+id/wallet_name"
-            style="@style/TextAppearance.App.Headline1"
+            style="@style/TextAppearance.App.Headline2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -45,6 +45,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:backgroundTint="@color/card_background"
                     android:layout_margin="@dimen/activity_horizontal_margin">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -166,6 +167,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                    android:backgroundTint="@color/card_background"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -263,6 +265,7 @@
                     android:id="@+id/cardview_tokens"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/card_background"
                     android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
                     android:layout_marginTop="@dimen/activity_vertical_margin">
 
@@ -339,6 +342,7 @@
                     android:layout_margin="@dimen/activity_horizontal_margin"
                     android:clickable="true"
                     android:focusable="true"
+                    android:backgroundTint="@color/card_background"
                     android:foreground="?android:attr/selectableItemBackground">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
