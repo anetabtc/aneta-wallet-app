@@ -2,4 +2,4 @@ include ':android'
 //include ':ios'
 //include ':sqldelight'
 include ':common-jvm'
-rootProject.name = "Ergo Wallet"
+rootProject.name = "Aneta Wallet"
