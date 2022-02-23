@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background_gradient">
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -11,62 +13,56 @@
 
         <LinearLayout
             android:id="@+id/screen_header"
-            style="@style/Widget.App.Group.Header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/ergo_logo"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="90dp"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/activity_horizontal_margin"
-                android:contentDescription="@null"
-                android:src="@drawable/ic_ergologo"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_height="wrap_content">
 
-            <TextView
-                style="@style/TextAppearance.App.Headline1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:ellipsize="middle"
-                android:singleLine="true"
-                android:text="@string/app_name" />
 
-            <TextView
-                android:id="@+id/label_version"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                tools:text="0.1.2" />
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="96dp"
+                    android:src="@drawable/aneta_wallet_logo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:ignore="MissingConstraints" />
 
-            <TextView
-                android:id="@+id/label_build_by"
-                style="@style/TextAppearance.App.Body1"
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/half_horizontal_margin"
-                android:gravity="center"
-                app:layout_constraintTop_toBottomOf="@id/screen_header"
-                tools:text="@string/desc_about" />
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/label_more_info"
-                style="@style/TextAppearance.App.Body1"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name"
+                    android:textColor="@color/main_text"
+                    android:textStyle="bold"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:ignore="MissingConstraints" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/half_horizontal_margin"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:gravity="center"
-                android:text="@string/desc_about_moreinfo"
-                app:layout_constraintTop_toBottomOf="@id/screen_header" />
+                android:layout_height="wrap_content">
 
-
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_version"
+                    android:textColor="@color/text"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:ignore="MissingConstraints" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -82,7 +78,68 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/settings_card_color">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/activity_vertical_margin"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearance.App.Body1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/half_horizontal_margin"
+                        android:autoLink="web"
+                        android:gravity="center"
+                        android:text="@string/social_media_title" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/activity_vertical_margin"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/telegram"
+                            android:layout_width="47dp"
+                            android:layout_height="47dp"
+                            android:clickable="true"
+                            android:src="@drawable/telegram"
+                            app:layout_constraintEnd_toEndOf="@id/linearLayout"
+                            app:layout_constraintStart_toStartOf="parent"
+                            tools:ignore="MissingConstraints" />
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            tools:ignore="MissingConstraints"
+                            android:orientation="horizontal" />
+
+
+                        <ImageView
+                            android:id="@+id/discord"
+                            android:layout_width="47dp"
+                            android:layout_height="47dp"
+                            android:clickable="true"
+                            android:src="@drawable/discord"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/linearLayout"
+                            tools:ignore="MissingConstraints" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/settings_card_color"
+                android:layout_marginTop="@dimen/activity_vertical_margin">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -101,7 +158,7 @@
 
                     <Button
                         android:id="@+id/display_currency"
-                        style="@style/Widget.App.Button.PrimaryTint"
+                        android:backgroundTint="@color/spinner_background"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/activity_vertical_margin"
@@ -112,6 +169,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/settings_card_color"
                 android:layout_marginTop="@dimen/activity_vertical_margin">
 
                 <LinearLayout
@@ -164,6 +222,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/settings_card_color"
                 android:layout_marginTop="@dimen/activity_vertical_margin">
 
                 <LinearLayout
@@ -182,7 +241,7 @@
 
                     <Button
                         android:id="@+id/button_connection_settings"
-                        style="@style/Widget.App.Button.PrimaryTint"
+                        style="@style/Widget.App.Button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/activity_vertical_margin"

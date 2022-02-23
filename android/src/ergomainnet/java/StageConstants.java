@@ -7,4 +7,7 @@ import org.ergoplatform.appkit.NetworkType;
  */
 public class StageConstants {
     public static final NetworkType NETWORK_TYPE = NetworkType.MAINNET;
+    public static final String EXPLORER_DISCORD_ADDRESS = "https://discord.com/invite/anetabtc";
+    public static final String EXPLORER_TELEGRAM_ADDRESS = "https://t.me/anetaBTC";
+
 }

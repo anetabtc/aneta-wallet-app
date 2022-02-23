@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:drawablePadding="@dimen/half_horizontal_margin"
                 android:text="@string/label_create_wallet"
-                app:drawableStartCompat="@drawable/ic_build_24"
+                app:drawableStartCompat="@drawable/ic_wallet"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/image_restore_wallet"
                 app:layout_constraintTop_toTopOf="parent" />

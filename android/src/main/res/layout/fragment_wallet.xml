@@ -7,9 +7,10 @@
     android:orientation="vertical">
 
     <FrameLayout
+        android:id="@+id/ergo_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorSurface"
+        android:background="@drawable/rectangle_tool_bar"
         android:elevation="2dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -46,7 +47,6 @@
                     android:contentDescription="@null"
                     android:src="@drawable/ic_cloud_off_24"
                     android:visibility="invisible"
-                    app:tint="@color/primary"
                     tools:visibility="visible" />
 
             </FrameLayout>

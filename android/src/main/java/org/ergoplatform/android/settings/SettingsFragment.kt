@@ -1,6 +1,8 @@
 package org.ergoplatform.android.settings
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -36,9 +38,9 @@ class SettingsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
-
-        binding.labelVersion.text = BuildConfig.VERSION_NAME
-        binding.labelBuildBy.text = getString(R.string.desc_about, getString(R.string.about_year))
+//
+//        binding.labelVersion.text = BuildConfig.VERSION_NAME
+//        binding.labelBuildBy.text = getString(R.string.desc_about, getString(R.string.about_year))
 
         return binding.root
     }
@@ -46,8 +48,8 @@ class SettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // makes the links clickable
-        binding.labelMoreInfo.enableLinks()
+//        // makes the links clickable
+//        binding.labelMoreInfo.enableLinks()
         binding.labelCoingecko.enableLinks()
 
         showDisplayCurrency()
@@ -63,6 +65,22 @@ class SettingsFragment : Fragment() {
 
         binding.buttonConnectionSettings.setOnClickListener {
             findNavController().navigateSafe(SettingsFragmentDirections.actionNavigationSettingsToConnectionSettingsDialogFragment())
+        }
+
+        binding.discord.setOnClickListener {
+            val browserIntent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse(StageConstants.EXPLORER_DISCORD_ADDRESS)
+            )
+            binding.root.context.startActivity(browserIntent)
+        }
+
+        binding.telegram.setOnClickListener {
+            val browserIntent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse(StageConstants.EXPLORER_TELEGRAM_ADDRESS)
+            )
+            binding.root.context.startActivity(browserIntent)
         }
 
         binding.containerDebugInformation.visibility =
