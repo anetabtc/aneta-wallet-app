@@ -6,15 +6,17 @@ plugins {
 }
 
 android {
+
     compileSdkVersion 31
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "org.ergoplatform.android"
+        applicationId "io.anetabtc.android"
+        testApplicationId "io.anetabtc.android"
         minSdkVersion 24
         targetSdkVersion 30
-        versionCode 2205
-        versionName "1.6.2205"
+        versionCode 1
+        versionName "1.0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
