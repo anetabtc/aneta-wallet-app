@@ -4,17 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_gradient"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorSurface"
+        android:background="@drawable/rectangle_tool_bar"
         android:elevation="2dp"
         android:orientation="vertical">
 
         <TextView
-            style="@style/TextAppearance.App.Headline1"
+            style="@style/TextAppearance.App.Headline2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -84,6 +85,7 @@
                     android:layout_marginHorizontal="@dimen/activity_vertical_margin"
                     android:layout_marginTop="@dimen/activity_horizontal_margin"
                     android:visibility="gone"
+                    android:backgroundTint="@color/card_background"
                     tools:visibility="visible">
 
                     <LinearLayout
@@ -126,6 +128,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/activity_horizontal_margin"
                 android:visibility="gone"
+                android:backgroundTint="@color/card_background"
                 tools:visibility="gone">
 
                 <LinearLayout

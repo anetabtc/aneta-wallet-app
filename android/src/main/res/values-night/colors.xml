@@ -30,8 +30,11 @@
     <color name="c1">#384562</color>
     <color name="c2">#1F324E</color>
     <color name="c3">#041E39</color>
+    <color name="c4">#1F324E</color>
+    <color name="c5">#041E39</color>
     <color name="hint_color">#FFFFFF</color>
     <color name="settings_buttons_color">#000000</color>
     <color name="edit_text_colot">#000000</color>
     <color name="color_cloud">#ff453a</color>
+    <color name="card_background">#20FFFFFF</color>
 </resources>

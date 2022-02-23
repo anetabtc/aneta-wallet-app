@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:background="?attr/colorSurface">
+    android:backgroundTint="@color/card_background">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         style="@style/width_match_parent_max_500"
