@@ -10,6 +10,7 @@ import androidx.navigation.fragment.NavHostFragment
 import org.ergoplatform.android.databinding.FragmentCreateWalletDialogBinding
 import org.ergoplatform.android.ui.FullScreenFragmentDialog
 import org.ergoplatform.android.ui.navigateSafe
+import org.ergoplatform.android.ui.showSensitiveDataCopyDialog
 
 /**
  * Create a new wallet, step 1
@@ -23,10 +24,10 @@ class CreateWalletFragmentDialog : FullScreenFragmentDialog() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        dialog?.window?.setFlags(
-            WindowManager.LayoutParams.FLAG_SECURE,
-            WindowManager.LayoutParams.FLAG_SECURE
-        )
+//        dialog?.window?.setFlags(
+//            WindowManager.LayoutParams.FLAG_SECURE,
+//            WindowManager.LayoutParams.FLAG_SECURE
+//        )
 
         // Inflate the layout for this fragment
         _binding = FragmentCreateWalletDialogBinding.inflate(inflater, container, false)
@@ -42,13 +43,19 @@ class CreateWalletFragmentDialog : FullScreenFragmentDialog() {
             }
         }
 
+        binding.buttonCopy.setOnClickListener {
+            binding.tvMnemonic.text?.toString()
+                ?.let { showSensitiveDataCopyDialog(requireContext(), it) }
+        }
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.tvMnemonic.text =
-            ViewModelProvider(this).get(CreateWalletViewModel::class.java).mnemonic
+        val string: String = ViewModelProvider(this).get(CreateWalletViewModel::class.java).mnemonic
+        binding.tvMnemonic.text = string
+
     }
 
     override fun onDestroyView() {

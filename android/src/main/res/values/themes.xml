@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.ErgoWallet" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.AneWallet" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/secondary</item>
         <item name="colorPrimaryDark">@color/primary</item>
@@ -48,7 +48,7 @@
         <item name="cornerSizeBottomLeft">0dp</item>
     </style>
 
-    <style name="FullScreenDialogTheme" parent="Theme.ErgoWallet">
+    <style name="FullScreenDialogTheme" parent="Theme.AneWallet">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">false</item>
         <item name="android:windowIsFloating">false</item>

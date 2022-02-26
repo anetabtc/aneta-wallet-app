@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_gradient"
     android:fitsSystemWindows="true">
 
     <androidx.cardview.widget.CardView
-        style="@style/width_match_parent_max_500"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:backgroundTint="@color/card_background"
         android:layout_margin="@dimen/activity_horizontal_margin">
 
         <LinearLayout
@@ -26,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:drawablePadding="@dimen/half_horizontal_margin"
                 android:text="@string/label_create_wallet"
-                app:drawableStartCompat="@drawable/ic_build_24"
+                app:drawableStartCompat="@drawable/ic_wallet"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/image_restore_wallet"
                 app:layout_constraintTop_toTopOf="parent" />

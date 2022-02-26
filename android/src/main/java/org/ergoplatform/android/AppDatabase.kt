@@ -18,7 +18,7 @@ import org.ergoplatform.persistance.*
         WalletStateDbEntity::class,
         WalletAddressDbEntity::class,
         WalletTokenDbEntity::class
-    ), version = 4
+    ), version = 5
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun walletDao(): WalletDbDao
@@ -40,6 +40,7 @@ abstract class AppDatabase : RoomDatabase() {
                 .addMigrations(MIGRATION_1_2)
                 .addMigrations(MIGRATION_2_3)
                 .addMigrations(MIGRATION_3_4)
+                .addMigrations(MIGRATION_4_5)
                 .build()
         }
 
@@ -67,6 +68,12 @@ abstract class AppDatabase : RoomDatabase() {
                 database.execSQL("ALTER TABLE wallet_addresses ADD COLUMN `label` TEXT")
             }
         }
+
+        val MIGRATION_4_5 = object : Migration(4, 5) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("ALTER TABLE wallet_configs ADD COLUMN `xpubkey` TEXT")
+            }
+        }
     }
 }
 
@@ -89,6 +96,15 @@ class RoomWalletDbProvider(val database: AppDatabase) : WalletDbProvider {
 
     override suspend fun insertWalletConfig(walletConfig: WalletConfig) {
         database.walletDao().insertAll(walletConfig.toDbEntity())
+    }
+
+    override suspend fun deleteWalletConfigAndStates(firstAddress: String, walletId: Int?) {
+        database.walletDao().deleteWalletStates(firstAddress)
+        database.walletDao().deleteTokensByWallet(firstAddress)
+        database.walletDao().deleteWalletAddresses(firstAddress)
+        (walletId ?: database.walletDao().loadWalletByFirstAddress(firstAddress)?.id)?.let { id ->
+            database.walletDao().deleteWalletConfig(id)
+        }
     }
 
     override fun getAllWalletConfigsSynchronous(): List<WalletConfig> {
@@ -118,6 +134,10 @@ class RoomWalletDbProvider(val database: AppDatabase) : WalletDbProvider {
 
     override suspend fun loadWalletAddress(id: Long): WalletAddress? {
         return database.walletDao().loadWalletAddress(id.toInt())?.toModel()
+    }
+
+    override suspend fun loadWalletAddress(publicAddress: String): WalletAddress? {
+        return database.walletDao().loadWalletAddress(publicAddress)?.toModel()
     }
 
     override suspend fun insertWalletAddress(walletAddress: WalletAddress) {

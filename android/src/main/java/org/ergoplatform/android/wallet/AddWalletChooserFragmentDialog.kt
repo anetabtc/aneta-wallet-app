@@ -49,4 +49,6 @@ class AddWalletChooserFragmentDialog : FullScreenFragmentDialog() {
         super.onDestroyView()
         _binding = null
     }
+
+
 }

@@ -5,12 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:background="@drawable/background_gradient"
     tools:context=".wallet.RestoreWalletFragmentDialog">
 
     <androidx.cardview.widget.CardView
         style="@style/width_match_parent_max_500"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:backgroundTint="@color/card_background"
         android:layout_margin="@dimen/activity_horizontal_margin">
 
         <LinearLayout
@@ -27,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:drawablePadding="@dimen/half_horizontal_margin"
                 android:text="@string/label_readonly_wallet"
-                app:drawableStartCompat="@drawable/ic_add_readonly_24"
+                app:drawableStartCompat="@drawable/ic_readonly"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/image_restore_wallet"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -56,6 +58,25 @@
                     android:imeOptions="actionDone"
                     android:inputType="text"
                     android:maxLines="1" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_wallet_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_and_half"
+                android:hint="@string/label_wallet_name"
+                app:endIconMode="clear_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:text="@string/label_readonly_wallet_default" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

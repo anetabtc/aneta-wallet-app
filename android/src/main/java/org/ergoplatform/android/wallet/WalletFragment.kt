@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.findFragment
 import androidx.lifecycle.Lifecycle
@@ -14,15 +15,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.ergoplatform.ErgoAmount
 import org.ergoplatform.NodeConnector
-import org.ergoplatform.android.AppDatabase
-import org.ergoplatform.android.Preferences
-import org.ergoplatform.android.R
-import org.ergoplatform.android.RoomWalletDbProvider
+import org.ergoplatform.android.*
 import org.ergoplatform.android.databinding.CardWalletBinding
 import org.ergoplatform.android.databinding.EntryWalletTokenBinding
 import org.ergoplatform.android.databinding.FragmentWalletBinding
@@ -84,7 +83,11 @@ class WalletFragment : Fragment() {
                         if (walletList.isEmpty()) View.GONE else View.VISIBLE
                     binding.emptyView.root.visibility =
                         if (walletList.isEmpty()) View.VISIBLE else View.GONE
+                    binding.ergoHeader.visibility = binding.swipeRefreshLayout.visibility
+                    val navView: BottomNavigationView = requireActivity().findViewById(R.id.nav_view)
+                    navView.visibility = binding.swipeRefreshLayout.visibility
                 })
+
 
         binding.emptyView.cardRestoreWallet.setOnClickListener {
             findNavController().navigate(R.id.restoreWalletFragmentDialog)
@@ -98,7 +101,7 @@ class WalletFragment : Fragment() {
             NavHostFragment.findNavController(requireParentFragment())
                 .navigate(R.id.createWalletDialog)
         }
-
+        binding.buttonScan.setOnClickListener { (requireActivity() as? MainActivity)?.scanQrCode() }
 
         val nodeConnector = NodeConnector.getInstance()
         val rotateAnimation =
@@ -153,9 +156,7 @@ class WalletFragment : Fragment() {
                             binding.ergoPrice.visibility = View.VISIBLE
                             binding.ergoPrice.amount = value.toDouble()
                             binding.ergoPrice.setSymbol(
-                                nodeConnector.fiatCurrency.toUpperCase(
-                                    Locale.getDefault()
-                                )
+                                nodeConnector.fiatCurrency.uppercase()
                             )
                         }
                         binding.labelErgoPrice.visibility = binding.ergoPrice.visibility
@@ -181,6 +182,7 @@ class WalletFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.fragment_wallet, menu)
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -241,7 +243,8 @@ class WalletAdapter(initWalletList: List<Wallet>) :
 class WalletViewHolder(val binding: CardWalletBinding) : RecyclerView.ViewHolder(binding.root) {
     fun bind(wallet: Wallet) {
         binding.walletName.text = wallet.walletConfig.displayName
-        binding.walletBalance.amount = ErgoAmount(wallet.getBalanceForAllAddresses()).toDouble()
+        val walletBalance = ErgoAmount(wallet.getBalanceForAllAddresses())
+        binding.walletBalance.setAmount(walletBalance.toBigDecimal())
 
         // Fill token headline
         val tokens = wallet.getTokensForAllAddresses()
@@ -259,7 +262,7 @@ class WalletViewHolder(val binding: CardWalletBinding) : RecyclerView.ViewHolder
 
         // Fill unconfirmed fields
         val unconfirmed = wallet.getUnconfirmedBalanceForAllAddresses()
-        binding.walletUnconfirmed.amount = ErgoAmount(unconfirmed).toDouble()
+        binding.walletUnconfirmed.setAmount(ErgoAmount(unconfirmed).toBigDecimal())
         binding.walletUnconfirmed.visibility = if (unconfirmed == 0L) View.GONE else View.VISIBLE
         binding.labelWalletUnconfirmed.visibility = binding.walletUnconfirmed.visibility
 
@@ -302,6 +305,7 @@ class WalletViewHolder(val binding: CardWalletBinding) : RecyclerView.ViewHolder
                 )
         }
 
+
         val launchUnfoldTokenFieldChange: (v: View) -> Unit = {
             GlobalScope.launch {
                 AppDatabase.getInstance(it.context).walletDao().updateWalletTokensUnfold(
@@ -322,8 +326,8 @@ class WalletViewHolder(val binding: CardWalletBinding) : RecyclerView.ViewHolder
             binding.walletFiat.visibility = View.GONE
         } else {
             binding.walletFiat.visibility = View.VISIBLE
-            binding.walletFiat.amount = ergoPrice * binding.walletBalance.amount
-            binding.walletFiat.setSymbol(nodeConnector.fiatCurrency.toUpperCase())
+            binding.walletFiat.amount = ergoPrice * walletBalance.toDouble()
+            binding.walletFiat.setSymbol(nodeConnector.fiatCurrency.uppercase())
         }
 
         // Fill token entries

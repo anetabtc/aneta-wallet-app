@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name" translatable="false">Ergo Wallet</string>
+    <string name="app_name" translatable="false">Aneta Wallet</string>
+    <string name="app_version" translatable="false">version 1.0</string>
+    <string name="social_media_title" translatable="false">Find help on our social medias:</string>
     <string name="title_transactions">Transactions</string>
     <string name="title_wallets">Wallets</string>
     <string name="title_settings">Settings</string>
@@ -36,10 +38,15 @@
     <string name="label_time_span_hours_ago">%1s hours ago</string>
     <string name="label_time_span_days_ago">%1s days ago</string>
     <string name="error_camera">Error initializing camera. Please check your privacy settings.</string>
+    <string name="desc_copy_sensitive_data">Please be aware that by copying the data to the device\'s
+        clipboard, every app running on this device can access it as long as you do not overwrite
+        the clipboard data. You do this at your own risk.</string>
+    <string name="button_copy_sensitive_data">Copy and accept risks</string>
 
     <!-- Wallet -->
     <string name="label_tokens">tokens</string>
     <string name="label_more_tokens">more tokens</string>
+    <string name="label_unnamed_token">(unnamed token)</string>
     <string name="label_unconfirmed">unconfirmed</string>
     <string name="button_receive">Receive</string>
     <string name="button_send">Send</string>
@@ -48,6 +55,10 @@
     <string name="label_erg_price">1 ERG ≈</string>
     <string name="label_fiat_amount">≈ %1s</string>
     <string name="label_wallet_default">My wallet</string>
+    <string name="label_readonly_wallet_default">My wallet (Read only)</string>
+    <string name="hint_signing_request">Please scan the signing request from the appropriate
+       Wallet\'s Send funds screen.</string>
+    <string name="error_qr_code_content_unknown">The scanned QR code was not of a known format.</string>
 
     <!-- add wallet -->
     <string name="menu_add_wallet">Add wallet</string>
@@ -58,11 +69,14 @@
     <string name="label_import_wallet">Import wallet</string>
     <string name="desc_import_wallet">Use an exported or saved wallet file to import an existing wallet (keys and addresses).</string>
     <string name="label_readonly_wallet">Read-only wallet</string>
-    <string name="desc_readonly_wallet">Add a wallet address in read-only mode. This won\'t save any keys on this device.</string>
+    <string name="desc_readonly_wallet">Add a wallet address in read-only mode. This won\'t save any secrets on this device.</string>
 
     <!-- add readonly wallet -->
-    <string name="intro_add_readonly">Enter your public wallet address to add the wallet in read-only mode.</string>
-    <string name="label_wallet_address">Wallet address</string>
+    <string name="intro_add_readonly">Enter your public wallet address or your extended public key to add the
+        wallet in read-only mode.</string>
+    <string name="label_wallet_address">Wallet address or key</string>
+    <string name="error_address_already_added">Address already added to \'%1s\'</string>
+    <string name="error_invalid_readonly_input">Not a valid ERG address or public key</string>
 
     <!-- Create wallet -->
     <string name="intro_create_wallet">This is your 15-word Ergo wallet mnemonic. These words are also known as a seed phrase or
@@ -87,8 +101,8 @@
 
     <!-- Save wallet -->
     <string name="intro_save_wallet">Your wallet\'s main public address is:</string>
-    <string name="intro_save_wallet2">You can add additional addresses later.\n\n
-        Choose how the wallet and keys should be saved on this device.</string>
+    <string name="intro_save_wallet2">You can add additional addresses later.</string>
+    <string name="intro_save_wallet3">Choose how the wallet and keys should be saved on this device.</string>
     <string name="button_save_password_encrypted">Save password-encrypted</string>
     <string name="desc_save_password_encrypted">Enter a password-phrase that you will need to reenter every time you want to send funds.</string>
     <string name="button_save_device_encrypted">Save device-encrypted</string>
@@ -107,6 +121,8 @@
     <string name="label_confirm_delete">Are you sure you want to erase the wallet from this device?\nThis can\'t be undone.</string>
     <string name="desc_display_mnemonic">You can display your mnemonic (seed phrase, paper key) in case you have lost your backup, or to confirm that your backup is correct.</string>
     <string name="button_display_mnemonic">Display mnemonic</string>
+    <string name="desc_display_xpubkey">You can add this wallet as a read-only wallet to other wallet applications with your extended public key. No secrets will be shared.</string>
+    <string name="button_display_xpubkey">Display public key</string>
 
     <!-- Wallet details -->
     <string name="title_wallet_balance">Balance</string>
@@ -175,6 +191,16 @@
         Scan this QR code to proceed.</string>
     <string name="desc_show_signed_multiple">Your transaction was signed and needs to be sent to the network.
         Scan these QR codes to proceed.</string>
+
+    <!-- Ergo Pay Signing -->
+    <string name="title_ergo_pay_request">Ergo Pay Request</string>
+    <string name="label_sign_with">Sign with: %1s (%2s)</string>
+    <string name="label_fetching_data">Requesting data from dApp…</string>
+    <string name="label_message_from_dapp">Message from dApp:\n%1s</string>
+    <string name="label_error_occured">An error occurred:\n%1s</string>
+    <string name="label_ergo_pay_wrong_address">Signing Request received for address %1s, which does not belong to this wallet.</string>
+    <string name="label_ergo_pay_choose_address">Please choose an address to process the Ergo Pay Request.</string>
+    <string name="error_prover_cant_sign">The transaction could not be signed with this wallet\'s keys.</string>
 
     <!-- Settings -->
     <string name="desc_about">Brought to you by Benjamin Schulte, %1s</string>
