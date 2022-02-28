@@ -66,28 +66,28 @@ class SendFundsFragment : SubmitTransactionFragment() {
         )
 
         // Add observers
-        viewModel.walletName.observe(viewLifecycleOwner, {
+        viewModel.walletName.observe(viewLifecycleOwner) {
             // when wallet is loaded, wallet name is set. we can init everything wallet specific here
             binding.walletName.text = getString(R.string.label_send_from, it)
             binding.hintReadonly.visibility =
                 if (viewModel.uiLogic.wallet!!.walletConfig.secretStorage == null) View.VISIBLE else View.GONE
             enableLayoutChangeAnimations()
-        })
-        viewModel.address.observe(viewLifecycleOwner, {
+        }
+        viewModel.address.observe(viewLifecycleOwner) {
             binding.addressLabel.text =
                 it?.getAddressLabel(AndroidStringProvider(requireContext()))
                     ?: getString(
                         R.string.label_all_addresses,
                         viewModel.uiLogic.wallet?.getNumOfAddresses()
                     )
-        })
-        viewModel.walletBalance.observe(viewLifecycleOwner, {
+        }
+        viewModel.walletBalance.observe(viewLifecycleOwner) {
             binding.tvBalance.text = getString(
                 R.string.label_wallet_balance,
                 it.toStringRoundToDecimals()
             )
-        })
-        viewModel.grossAmount.observe(viewLifecycleOwner, {
+        }
+        viewModel.grossAmount.observe(viewLifecycleOwner) {
             binding.tvFee.text = getString(
                 R.string.desc_fee,
                 viewModel.uiLogic.feeAmount.toStringRoundToDecimals()
@@ -105,23 +105,23 @@ class SendFundsFragment : SubmitTransactionFragment() {
                     ),
                 )
             )
-        })
-        viewModel.tokensChosenLiveData.observe(viewLifecycleOwner, {
+        }
+        viewModel.tokensChosenLiveData.observe(viewLifecycleOwner) {
             refreshTokensList()
-        })
-        viewModel.errorMessageLiveData.observe(viewLifecycleOwner, {
+        }
+        viewModel.errorMessageLiveData.observe(viewLifecycleOwner) {
             MaterialAlertDialogBuilder(requireContext())
                 .setMessage(it)
                 .setPositiveButton(R.string.zxing_button_ok, null)
                 .show()
-        })
-        viewModel.txId.observe(viewLifecycleOwner, {
+        }
+        viewModel.txId.observe(viewLifecycleOwner) {
             it?.let {
                 binding.cardviewTxEdit.visibility = View.GONE
                 binding.cardviewTxDone.visibility = View.VISIBLE
                 binding.labelTxId.text = it
             }
-        })
+        }
 
         // Add click listeners
         binding.addressLabel.setOnClickListener {
@@ -188,12 +188,12 @@ class SendFundsFragment : SubmitTransactionFragment() {
         }
         KeyboardVisibilityEvent.setEventListener(
             requireActivity(),
-            viewLifecycleOwner,
-            { keyboardOpen ->
-                if (keyboardOpen && binding.amount.editText?.hasFocus() == true) {
-                    ensureAmountVisibleDelayed()
-                }
-            })
+            viewLifecycleOwner
+        ) { keyboardOpen ->
+            if (keyboardOpen && binding.amount.editText?.hasFocus() == true) {
+                ensureAmountVisibleDelayed()
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
