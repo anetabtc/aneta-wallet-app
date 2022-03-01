@@ -48,3 +48,7 @@ data class Wallet(
     val tokens: List<WalletToken>,
     val addresses: List<WalletAddress>
 )
+
+data class Mnemonic(
+    val mnemonic: String
+)
