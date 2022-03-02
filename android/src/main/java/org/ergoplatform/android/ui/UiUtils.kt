@@ -4,6 +4,7 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
@@ -111,6 +112,7 @@ fun setQrCodeToImageView(imageViewQrCode: ImageView, text: String, width: Int, h
 
 fun showDialogWithCopyOption(context: Context, message: String) {
     MaterialAlertDialogBuilder(context)
+        .setBackground(context.getDrawable(R.drawable.rectangle))
         .setMessage(message)
         .setPositiveButton(R.string.button_copy) { _, _ ->
             val clipboard = ContextCompat.getSystemService(
