@@ -287,6 +287,7 @@ abstract class SendFundsUiLogic : SubmitTransactionUiLogic() {
             warning.arguments?.let { args -> texts.getString(warning.errorCode, args) }
                 ?: texts.getString(warning.errorCode)
         }
+        print(stringWarnings)
         // don't show twice
         paymentRequestWarnings.clear()
 
