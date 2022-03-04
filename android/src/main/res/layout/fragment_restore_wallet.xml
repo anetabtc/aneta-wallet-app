@@ -8,12 +8,6 @@
     android:background="@drawable/background_gradient"
     tools:context=".wallet.RestoreWalletFragmentDialog">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:backgroundTint="@color/card_background"
-        android:layout_margin="@dimen/activity_horizontal_margin">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -50,23 +44,28 @@
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:text="@string/label_restore_wallet_word_list" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tv_mnemonic"
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:id="@+id/tv_mnemonic"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:errorEnabled="true"-->
+<!--                app:errorIconDrawable="@null">-->
+
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:gravity="top"-->
+<!--                    android:imeOptions="actionDone"-->
+<!--                    android:inputType="textMultiLine|textVisiblePassword"-->
+<!--                    android:lines="8" />-->
+
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mnemonic_input_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:errorEnabled="true"
-                app:errorIconDrawable="@null">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="top"
-                    android:imeOptions="actionDone"
-                    android:inputType="textMultiLine|textVisiblePassword"
-                    android:lines="8" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
+                tools:listitem="@layout/mnemonic_input_layout"/>
             <Button
                 android:id="@+id/button_restore"
                 style="?attr/materialButtonStyle"
@@ -77,5 +76,4 @@
                 android:text="@string/button_restore" />
 
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
 </androidx.core.widget.NestedScrollView>
