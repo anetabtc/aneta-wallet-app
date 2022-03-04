@@ -303,15 +303,16 @@ class SendFundsFragment : SubmitTransactionFragment() {
 
     private fun startPayment() {
         val checkResponse = viewModel.uiLogic.checkCanMakePayment()
-
         if (checkResponse.receiverError) {
             binding.tvReceiver.error = getString(R.string.error_receiver_address)
             binding.tvReceiver.editText?.requestFocus()
         }
+
         if (checkResponse.amountError) {
             binding.amount.error = getString(R.string.error_amount)
             if (!checkResponse.receiverError) binding.amount.editText?.requestFocus()
         }
+
         if (checkResponse.tokenError) {
             binding.labelTokenAmountError.visibility = View.VISIBLE
             setFocusToEmptyTokenAmountInput()
