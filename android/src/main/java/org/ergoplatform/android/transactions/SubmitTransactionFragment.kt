@@ -29,6 +29,7 @@ abstract class SubmitTransactionFragment : AbstractAuthenticationFragment(),
             else
                 ProgressBottomSheetDialogFragment.dismissProgressDialog(childFragmentManager)
         })
+
         viewModel.txWorkDoneLiveData.observe(viewLifecycleOwner, {
             if (!it.success) {
                 val snackbar = Snackbar.make(

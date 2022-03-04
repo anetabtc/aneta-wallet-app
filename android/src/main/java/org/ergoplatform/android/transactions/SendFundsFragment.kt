@@ -2,6 +2,7 @@ package org.ergoplatform.android.transactions
 
 import android.animation.LayoutTransition
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.InputType
@@ -126,6 +127,16 @@ class SendFundsFragment : SubmitTransactionFragment() {
         binding.addressLabel.setOnClickListener {
             showChooseAddressList(true)
         }
+
+        binding.labelTxId.setOnClickListener{
+            val txUrl = getExplorerTxUrl(binding.labelTxId.text.toString())
+            val browserIntent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse(txUrl)
+            )
+            binding.root.context.startActivity(browserIntent)
+        }
+
         binding.buttonShareTx.setOnClickListener {
             val txUrl = getExplorerTxUrl(binding.labelTxId.text.toString())
             val sendIntent: Intent = Intent().apply {
@@ -137,6 +148,7 @@ class SendFundsFragment : SubmitTransactionFragment() {
             val shareIntent = Intent.createChooser(sendIntent, null)
             startActivity(shareIntent)
         }
+
         binding.buttonDismiss.setOnClickListener {
             val succeeded = findNavController().popBackStack()
             // back stack might be empty when coming from a deep link

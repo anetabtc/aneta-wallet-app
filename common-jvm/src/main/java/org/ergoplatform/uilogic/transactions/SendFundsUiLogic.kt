@@ -162,6 +162,7 @@ abstract class SendFundsUiLogic : SubmitTransactionUiLogic() {
                     preferences, texts
                 )
             }
+
             notifyUiLocked(false)
             if (ergoTxResult.success) {
                 NodeConnector.getInstance().invalidateCache()
