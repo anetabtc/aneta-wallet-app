@@ -20,6 +20,7 @@ import org.ergoplatform.wallet.getBalanceForAllAddresses
 import org.ergoplatform.wallet.getStateForAddress
 import org.ergoplatform.wallet.getTokensForAddress
 import org.ergoplatform.wallet.getTokensForAllAddresses
+import javax.swing.text.DefaultEditorKit
 import kotlin.math.max
 
 abstract class SendFundsUiLogic : SubmitTransactionUiLogic() {
@@ -293,7 +294,7 @@ abstract class SendFundsUiLogic : SubmitTransactionUiLogic() {
         paymentRequestWarnings.clear()
 
         return (if (stringWarnings.isEmpty()) null
-        else stringWarnings.joinToString("\n"))
+                    else stringWarnings.joinToString("\n"))
     }
 
     fun qrCodeScanned(
@@ -316,6 +317,7 @@ abstract class SendFundsUiLogic : SubmitTransactionUiLogic() {
                     content.address,
                     content.amount.let { amount -> if (amount.nanoErgs > 0) amount else null }
                 )
+
                 addTokensFromPaymentRequest(content.tokens)
             } ?: showErrorMessage(
                 stringProvider.getString(
