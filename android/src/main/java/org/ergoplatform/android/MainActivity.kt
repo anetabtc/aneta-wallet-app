@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun scanQrCode() {
-        IntentIntegrator(this).initiateScan(setOf(IntentIntegrator.QR_CODE))
+        IntentIntegrator(this).setBeepEnabled(false).initiateScan(setOf(IntentIntegrator.QR_CODE))
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

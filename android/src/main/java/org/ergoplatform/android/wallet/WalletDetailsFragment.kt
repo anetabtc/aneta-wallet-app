@@ -130,7 +130,7 @@ class WalletDetailsFragment : Fragment(), AddressChooserCallback {
         }
 
         binding.buttonScan.setOnClickListener {
-            IntentIntegrator.forSupportFragment(this).initiateScan(setOf(IntentIntegrator.QR_CODE))
+            IntentIntegrator.forSupportFragment(this).setBeepEnabled(false).initiateScan(setOf(IntentIntegrator.QR_CODE))
         }
 
         // enable layout change animations after a short wait time
