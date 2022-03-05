@@ -29,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@id/number"
                 tools:ignore="MissingConstraints"
                 tools:text="smart" />
         </androidx.constraintlayout.widget.ConstraintLayout>

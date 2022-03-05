@@ -2,6 +2,7 @@ package org.ergoplatform.android.transactions
 
 import android.animation.LayoutTransition
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
@@ -134,6 +135,11 @@ class SendFundsFragment : SubmitTransactionFragment() {
             val txUrl = getExplorerTxUrl(binding.labelTxId.text.toString())
             showDialogToOpenUrl(binding.root.context, txUrl)
         }
+
+
+
+
+
 
         binding.buttonShareTx.setOnClickListener {
             val txUrl = getExplorerTxUrl(binding.labelTxId.text.toString())
@@ -426,3 +432,4 @@ class SendFundsFragment : SubmitTransactionFragment() {
 
     }
 }
+
