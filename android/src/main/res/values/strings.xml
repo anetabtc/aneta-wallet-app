@@ -171,6 +171,7 @@
     <string name="label_send_all">Send all</string>
     <string name="title_add_token">Choose token to send</string>
     <string name="error_token_amount">Please enter valid token amounts or remove the invalid token entries</string>
+    <string name="error_token_assets">You don’t have enough assets in your wallet for that transaction. Please try a different amount.</string>
     <string name="error_balance_erg">There is not enough balance to send the specified amount: only %1s ERG available.</string>
     <string name="error_request_token_not_found">Could not add token \'%1s\'</string>
     <string name="error_request_token_amount">Could not set requested amount for token \'%1s\'</string>
