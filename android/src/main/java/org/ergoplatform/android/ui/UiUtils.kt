@@ -116,6 +116,20 @@ fun showDialogWithCopyOption(context: Context, message: String) {
         .show()
 }
 
+fun showDialogToOpenUrl(context: Context, url: String){
+    MaterialAlertDialogBuilder(context)
+        .setBackground(context.getDrawable(R.drawable.rectangle))
+        .setMessage(R.string.label_leave_app)
+        .setNegativeButton(R.string.label_dismiss, null)
+        .setPositiveButton(R.string.button_yes){_, _ ->
+            val browserIntent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse(url)
+            )
+            context.startActivity(browserIntent)
+        }
+        .show()
+}
 
 fun showSensitiveDataCopyDialog(context: Context, dataToCopy: String) {
     MaterialAlertDialogBuilder(context)

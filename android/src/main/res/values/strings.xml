@@ -37,6 +37,7 @@
     <string name="label_time_span_minutes_ago">%1s minutes ago</string>
     <string name="label_time_span_hours_ago">%1s hours ago</string>
     <string name="label_time_span_days_ago">%1s days ago</string>
+    <string name="label_leave_app">Do you want to leave this app?</string>
     <string name="error_camera">Error initializing camera. Please check your privacy settings.</string>
     <string name="desc_copy_sensitive_data">Please be aware that by copying the data to the device\'s
         clipboard, every app running on this device can access it as long as you do not overwrite
