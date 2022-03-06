@@ -8,21 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.NavHostFragment
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.NonDisposableHandle.parent
-import org.ergoplatform.android.R
 import org.ergoplatform.android.databinding.FragmentRestoreWalletBinding
 import org.ergoplatform.android.databinding.MnemonicInputLayoutBinding
-import org.ergoplatform.android.databinding.MnemonicLayoutBinding
 import org.ergoplatform.android.ui.*
-import org.ergoplatform.persistance.MnemonicInput
 import org.ergoplatform.uilogic.wallet.RestoreWalletUiLogic
-import scala.reflect.internal.util.NoSourceFile.position
-
-
 
 
 /**
@@ -46,8 +37,6 @@ class RestoreWalletFragmentDialog : FullScreenFragmentDialog() {
         val layoutManager = GridLayoutManager(context, 2)
 
         // Create a custom SpanSizeLookup where the first item spans both columns
-
-        // Create a custom SpanSizeLookup where the first item spans both columns
         layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
                 return 1
@@ -57,8 +46,7 @@ class RestoreWalletFragmentDialog : FullScreenFragmentDialog() {
         binding.mnemonicInputRecyclerView.adapter = MnemonicInputAdapter(mnemonicList)
 
         binding.buttonRestore.setOnClickListener {
-            println()
-            uiLogic?.doRestore()
+            uiLogic.doRestore()
         }
 
 
@@ -68,7 +56,7 @@ class RestoreWalletFragmentDialog : FullScreenFragmentDialog() {
     inner class AndroidRestoreWalletUiLogic(context: Context) :
         RestoreWalletUiLogic(AndroidStringProvider(context)) {
 
-        override fun getEnteredMnemonic(): CharSequence? = ""
+        public override fun getEnteredMnemonic(): CharSequence = mnemonicList.joinToString(separator=" ")
         override fun setErrorLabel(error: String?) {
 //            binding.tvMnemonic.error = error
         }
@@ -83,7 +71,8 @@ class RestoreWalletFragmentDialog : FullScreenFragmentDialog() {
         }
 
         override fun hideForcedSoftKeyboard() {
-//            hideForcedSoftKeyboard(requireContext(), binding.ex)
+            //TODO hide keyboard efter button restore
+
         }
     }
 
@@ -91,11 +80,13 @@ class RestoreWalletFragmentDialog : FullScreenFragmentDialog() {
         RecyclerView.Adapter<MnemonicInputAdapter.MnemonicInputViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MnemonicInputViewHolder {
-
             val mnemonicInputBinding =
-                MnemonicInputLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-            val cardViewHolder = MnemonicInputViewHolder(mnemonicInputBinding)
-            return cardViewHolder
+                MnemonicInputLayoutBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+            return MnemonicInputViewHolder(mnemonicInputBinding)
         }
 
         override fun onBindViewHolder(holder: MnemonicInputViewHolder, position: Int) {
@@ -108,15 +99,12 @@ class RestoreWalletFragmentDialog : FullScreenFragmentDialog() {
 
         inner class MnemonicInputViewHolder(val binding: MnemonicInputLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
             fun bind(position: Int) {
-                binding.number.text = (position + 1).toString()
-
+                val pos = if (position % 2 == 0) position + 1-position/2 else position + 1 + (itemCount - position)/2
+                binding.number.text = (pos).toString()
                 binding.tvMnemonic.addTextChangedListener(object : TextWatcher {
                     override fun afterTextChanged(s: Editable?) {
-                        val value: String = mnemonicList[position]
-                        if (value != null) {
-                            var newPhrase: String = binding.tvMnemonic.text.toString()
-                            mnemonicList[position]= newPhrase
-                        }
+                        var newPhrase: String = binding.tvMnemonic.text.toString().trim()
+                        mnemonicList[pos-1]= newPhrase
                     }
                     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                     }
@@ -126,11 +114,7 @@ class RestoreWalletFragmentDialog : FullScreenFragmentDialog() {
                     }
                 })
 
-                var string = mnemonicList.joinToString(separator = " ")
-
-
-
-
+//                var string = mnemonicList.joinToString(separator = " ")
 
             }
 
