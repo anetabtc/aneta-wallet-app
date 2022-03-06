@@ -2,6 +2,7 @@ package org.ergoplatform.android.wallet
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -105,15 +106,14 @@ class RestoreWalletFragmentDialog : FullScreenFragmentDialog() {
                 val pos = if (position % 2 == 0) position + 1-position/2 else position + 1 + (itemCount - position)/2
                 binding.number.text = (pos).toString()
                 binding.tvMnemonic.addTextChangedListener(object : TextWatcher {
-                    @SuppressLint("ResourceAsColor")
                     override fun afterTextChanged(s: Editable?) {
                         var newPhrase: String = binding.tvMnemonic.text.toString().trim()
                         if (newPhrase.isEmpty()) {
                             binding.tvMnemonic.setBackgroundResource(R.drawable.rectangle_white_with_red_border)
-                            binding.number.setTextColor(R.color.biometric_error_color)
+                            binding.number.setTextColor(Color.parseColor("#ff5722"))
                         }else{
                             binding.tvMnemonic.setBackgroundResource(R.drawable.rectangle_white)
-                            binding.number.setTextColor(R.color.text)
+                            binding.number.setTextColor(binding.tvMnemonic.textColors)
                         }
                         mnemonicList[pos-1]= newPhrase
                     }
