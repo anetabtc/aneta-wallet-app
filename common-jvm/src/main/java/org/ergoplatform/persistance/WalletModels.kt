@@ -49,6 +49,9 @@ data class Wallet(
     val addresses: List<WalletAddress>
 )
 
-data class Mnemonic(
+data class MnemonicInput(
+    val position: Int,
     val mnemonic: String
 )
+
+

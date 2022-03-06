@@ -17,6 +17,14 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/ex"
+                style="@style/TextAppearance.App.Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
                 android:id="@+id/title_restore_wallet"
                 style="@style/TextAppearance.App.HeadlineCardView"
                 android:layout_width="match_parent"
@@ -35,6 +43,7 @@
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:layout_marginBottom="@dimen/half_horizontal_margin"
                 android:text="@string/intro_restore_wallet" />
+
 
 
 <!--            <com.google.android.material.textfield.TextInputLayout-->
@@ -58,7 +67,7 @@
                 android:id="@+id/mnemonic_input_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:listitem="@layout/mnemonic_layout"/>
+                tools:listitem="@layout/mnemonic_input_layout"/>
             <Button
                 android:id="@+id/button_restore"
                 style="?attr/materialButtonStyle"
