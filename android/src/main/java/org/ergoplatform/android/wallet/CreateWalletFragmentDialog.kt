@@ -16,7 +16,9 @@ import androidx.recyclerview.widget.RecyclerView
 
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
+import androidx.recyclerview.widget.LinearLayoutManager
 import org.ergoplatform.android.databinding.MnemonicLayoutBinding
+import kotlin.math.pow
 
 
 /**
@@ -65,13 +67,12 @@ class CreateWalletFragmentDialog : FullScreenFragmentDialog() {
         val layoutManager = GridLayoutManager(context, 2)
 
         // Create a custom SpanSizeLookup where the first item spans both columns
-
-        // Create a custom SpanSizeLookup where the first item spans both columns
         layoutManager.spanSizeLookup = object : SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
                 return 1
             }
         }
+
 
         binding.mnemonicRecyclerView.layoutManager = layoutManager
         binding.mnemonicRecyclerView.adapter = MnemonicAdapter(string)
@@ -96,12 +97,14 @@ class MnemonicAdapter(string: String) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MnemonicViewHolder {
         val mnemonicBinding =
             MnemonicLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
         val cardViewHolder = MnemonicViewHolder(mnemonicBinding)
         return cardViewHolder
     }
 
     override fun onBindViewHolder(holder: MnemonicViewHolder, position: Int) {
-        holder.bind((position + 1), mnemonicList.get(position))
+        val newPosition = if (position % 2 == 0) position + 1-position/2 else position + 1 + (itemCount - position)/2
+        holder.bind((newPosition), mnemonicList.get(newPosition-1))
     }
 
     override fun getItemCount(): Int {
