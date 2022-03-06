@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import org.ergoplatform.android.R
 import org.ergoplatform.android.databinding.FragmentRestoreWalletBinding
 import org.ergoplatform.android.databinding.MnemonicInputLayoutBinding
 import org.ergoplatform.android.ui.*
@@ -49,7 +50,6 @@ class RestoreWalletFragmentDialog : FullScreenFragmentDialog() {
             uiLogic.doRestore()
         }
 
-
         return binding.root
     }
 
@@ -58,7 +58,8 @@ class RestoreWalletFragmentDialog : FullScreenFragmentDialog() {
 
         public override fun getEnteredMnemonic(): CharSequence = mnemonicList.joinToString(separator=" ")
         override fun setErrorLabel(error: String?) {
-//            binding.tvMnemonic.error = error
+            val errorLabel = error ?: ""
+            showDialogWithCopyOption(binding.root.context, errorLabel)
         }
 
         override fun navigateToSaveWalletDialog(mnemonic: String) {
@@ -103,21 +104,19 @@ class RestoreWalletFragmentDialog : FullScreenFragmentDialog() {
                 binding.number.text = (pos).toString()
                 binding.tvMnemonic.addTextChangedListener(object : TextWatcher {
                     override fun afterTextChanged(s: Editable?) {
-                        var newPhrase: String = binding.tvMnemonic.text.toString().trim()
+                        val newPhrase: String = binding.tvMnemonic.text.toString().trim()
+
                         mnemonicList[pos-1]= newPhrase
                     }
                     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
                     }
 
                     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
 
                     }
                 })
-
-//                var string = mnemonicList.joinToString(separator = " ")
-
             }
-
         }
 
     }
