@@ -291,7 +291,7 @@
                         android:layout_marginTop="@dimen/half_horizontal_margin"
                         android:gravity="center"
                         android:textStyle="bold"
-
+                        android:background="@drawable/link_color_change"
                         app:layout_constraintEnd_toStartOf="@id/button_share_tx"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/desc_tx_done"

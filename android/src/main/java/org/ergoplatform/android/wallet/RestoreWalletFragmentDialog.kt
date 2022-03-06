@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import org.ergoplatform.android.R
 import org.ergoplatform.android.databinding.FragmentRestoreWalletBinding
 import org.ergoplatform.android.databinding.MnemonicInputLayoutBinding
 import org.ergoplatform.android.ui.*
@@ -49,6 +48,7 @@ class RestoreWalletFragmentDialog : FullScreenFragmentDialog() {
         binding.buttonRestore.setOnClickListener {
             uiLogic.doRestore()
         }
+
 
         return binding.root
     }
@@ -104,8 +104,10 @@ class RestoreWalletFragmentDialog : FullScreenFragmentDialog() {
                 binding.number.text = (pos).toString()
                 binding.tvMnemonic.addTextChangedListener(object : TextWatcher {
                     override fun afterTextChanged(s: Editable?) {
-                        val newPhrase: String = binding.tvMnemonic.text.toString().trim()
+                        var newPhrase: String = binding.tvMnemonic.text.toString().trim()
+                        if (newPhrase.isEmpty()) {
 
+                        }
                         mnemonicList[pos-1]= newPhrase
                     }
                     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
