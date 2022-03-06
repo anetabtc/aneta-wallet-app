@@ -121,6 +121,7 @@ class SendFundsFragment : SubmitTransactionFragment() {
         viewModel.txId.observe(viewLifecycleOwner) {
             it?.let {
                 binding.cardviewTxEdit.visibility = View.GONE
+                setHasOptionsMenu(false)
                 binding.cardviewTxDone.visibility = View.VISIBLE
                 binding.labelTxId.text = it
             }

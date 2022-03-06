@@ -98,6 +98,7 @@ class ReceiveToWalletFragment : Fragment(), AddressChooserCallback {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.fragment_receive_to_wallet, menu)
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
