@@ -59,6 +59,7 @@ class RestoreWalletFragmentDialog : FullScreenFragmentDialog() {
         public override fun getEnteredMnemonic(): CharSequence = mnemonicList.joinToString(separator=" ")
         override fun setErrorLabel(error: String?) {
 //            binding.tvMnemonic.error = error
+            binding.restoreError.visibility = View.VISIBLE
         }
 
         override fun navigateToSaveWalletDialog(mnemonic: String) {
@@ -103,6 +104,10 @@ class RestoreWalletFragmentDialog : FullScreenFragmentDialog() {
                 binding.number.text = (pos).toString()
                 binding.tvMnemonic.addTextChangedListener(object : TextWatcher {
                     override fun afterTextChanged(s: Editable?) {
+
+                        if(binding.tvMnemonic.text.toString().equals(null)){
+
+                        }
                         var newPhrase: String = binding.tvMnemonic.text.toString().trim()
                         mnemonicList[pos-1]= newPhrase
                     }
