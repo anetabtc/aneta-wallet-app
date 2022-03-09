@@ -37,4 +37,5 @@
     <color name="edit_text_colot">#000000</color>
     <color name="color_cloud">#ff453a</color>
     <color name="card_background">#20FFFFFF</color>
+    <color name="alert_dialog_background">#434C61</color>
 </resources>

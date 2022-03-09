@@ -13,7 +13,8 @@
         android:background="@drawable/rectangle_white"
         android:paddingLeft="35dp"
         android:textColor="@color/text"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
 
 
     <TextView

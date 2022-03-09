@@ -105,9 +105,11 @@ class RestoreWalletFragmentDialog : FullScreenFragmentDialog() {
             fun bind(position: Int) {
                 val pos = if (position % 2 == 0) position + 1-position/2 else position + 1 + (itemCount - position)/2
                 binding.number.text = (pos).toString()
+
                 binding.tvMnemonic.addTextChangedListener(object : TextWatcher {
                     override fun afterTextChanged(s: Editable?) {
-                        var newPhrase: String = binding.tvMnemonic.text.toString().trim()
+                        val newPhrase: String = binding.tvMnemonic.text.toString().lowercase()
+//                        binding.tvMnemonic.setText(newPhrase)
                         if (newPhrase.isEmpty()) {
                             binding.tvMnemonic.setBackgroundResource(R.drawable.rectangle_white_with_red_border)
                             binding.number.setTextColor(Color.parseColor("#ff5722"))

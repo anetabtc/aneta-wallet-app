@@ -138,10 +138,6 @@ class SendFundsFragment : SubmitTransactionFragment() {
         }
 
 
-
-
-
-
         binding.buttonShareTx.setOnClickListener {
             val txUrl = getExplorerTxUrl(binding.labelTxId.text.toString())
             val sendIntent: Intent = Intent().apply {

@@ -148,6 +148,7 @@
 
     <!-- Alert dialog -->
     <style name="ThemeOverlay.App.MaterialAlertDialog" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+<!--        <item name="actionModeBackground">@style/CustomBottomSheet</item>-->
         <item name="materialAlertDialogTitleTextStyle">@style/Widget.App.DialogTitle</item>
         <item name="materialAlertDialogBodyTextStyle">@style/TextAppearance.App.Body1</item>
     </style>
