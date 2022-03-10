@@ -110,7 +110,7 @@ class ColdWalletSigningFragment : AbstractAuthenticationFragment() {
         }
 
         binding.buttonScanMore.setOnClickListener {
-            IntentIntegrator.forSupportFragment(this).initiateScan(setOf(IntentIntegrator.QR_CODE))
+            IntentIntegrator.forSupportFragment(this).setBeepEnabled(false).initiateScan(setOf(IntentIntegrator.QR_CODE))
         }
 
         binding.qrCodePager.registerOnPageChangeCallback(object :

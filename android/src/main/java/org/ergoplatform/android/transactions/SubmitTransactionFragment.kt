@@ -29,6 +29,7 @@ abstract class SubmitTransactionFragment : AbstractAuthenticationFragment(),
             else
                 ProgressBottomSheetDialogFragment.dismissProgressDialog(childFragmentManager)
         })
+
         viewModel.txWorkDoneLiveData.observe(viewLifecycleOwner, {
             if (!it.success) {
                 val snackbar = Snackbar.make(
@@ -42,7 +43,7 @@ abstract class SubmitTransactionFragment : AbstractAuthenticationFragment(),
                     snackbar.setAction(
                         R.string.label_details
                     ) {
-                        showDialogWithCopyOption(requireContext(), errorMsg)
+                        showDialogWithCopyOption(requireContext(), transformErrorMsg(errorMsg))
                     }
                 }
                 snackbar.setAnchorView(R.id.nav_view).show()
@@ -52,6 +53,13 @@ abstract class SubmitTransactionFragment : AbstractAuthenticationFragment(),
             }
         })
 
+    }
+
+    private fun transformErrorMsg(errorMsg: String): String{
+        if (errorMsg.startsWith("not enough boxes to meet token needs")) {
+            return getString(R.string.error_token_assets)
+        }
+        return errorMsg
     }
 
     fun showChooseAddressList(addShowAllEntry: Boolean) {

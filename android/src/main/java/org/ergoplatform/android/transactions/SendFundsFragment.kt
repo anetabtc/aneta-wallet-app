@@ -2,6 +2,8 @@ package org.ergoplatform.android.transactions
 
 import android.animation.LayoutTransition
 import android.content.Intent
+import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.InputType
@@ -13,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import com.google.zxing.integration.android.IntentIntegrator
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
@@ -23,6 +26,7 @@ import org.ergoplatform.android.databinding.FragmentSendFundsTokenItemBinding
 import org.ergoplatform.android.ui.*
 import org.ergoplatform.persistance.WalletToken
 import org.ergoplatform.tokens.isSingularToken
+import org.ergoplatform.transactions.PromptSigningResult
 import org.ergoplatform.utils.formatFiatToString
 import org.ergoplatform.wallet.addresses.getAddressLabel
 import org.ergoplatform.wallet.getNumOfAddresses
@@ -65,28 +69,28 @@ class SendFundsFragment : SubmitTransactionFragment() {
         )
 
         // Add observers
-        viewModel.walletName.observe(viewLifecycleOwner, {
+        viewModel.walletName.observe(viewLifecycleOwner) {
             // when wallet is loaded, wallet name is set. we can init everything wallet specific here
             binding.walletName.text = getString(R.string.label_send_from, it)
             binding.hintReadonly.visibility =
                 if (viewModel.uiLogic.wallet!!.walletConfig.secretStorage == null) View.VISIBLE else View.GONE
             enableLayoutChangeAnimations()
-        })
-        viewModel.address.observe(viewLifecycleOwner, {
+        }
+        viewModel.address.observe(viewLifecycleOwner) {
             binding.addressLabel.text =
                 it?.getAddressLabel(AndroidStringProvider(requireContext()))
                     ?: getString(
                         R.string.label_all_addresses,
                         viewModel.uiLogic.wallet?.getNumOfAddresses()
                     )
-        })
-        viewModel.walletBalance.observe(viewLifecycleOwner, {
+        }
+        viewModel.walletBalance.observe(viewLifecycleOwner) {
             binding.tvBalance.text = getString(
                 R.string.label_wallet_balance,
                 it.toStringRoundToDecimals()
             )
-        })
-        viewModel.grossAmount.observe(viewLifecycleOwner, {
+        }
+        viewModel.grossAmount.observe(viewLifecycleOwner) {
             binding.tvFee.text = getString(
                 R.string.desc_fee,
                 viewModel.uiLogic.feeAmount.toStringRoundToDecimals()
@@ -104,28 +108,36 @@ class SendFundsFragment : SubmitTransactionFragment() {
                     ),
                 )
             )
-        })
-        viewModel.tokensChosenLiveData.observe(viewLifecycleOwner, {
+        }
+        viewModel.tokensChosenLiveData.observe(viewLifecycleOwner) {
             refreshTokensList()
-        })
-        viewModel.errorMessageLiveData.observe(viewLifecycleOwner, {
+        }
+        viewModel.errorMessageLiveData.observe(viewLifecycleOwner) {
             MaterialAlertDialogBuilder(requireContext())
                 .setMessage(it)
                 .setPositiveButton(R.string.zxing_button_ok, null)
                 .show()
-        })
-        viewModel.txId.observe(viewLifecycleOwner, {
+        }
+        viewModel.txId.observe(viewLifecycleOwner) {
             it?.let {
                 binding.cardviewTxEdit.visibility = View.GONE
+                setHasOptionsMenu(false)
                 binding.cardviewTxDone.visibility = View.VISIBLE
                 binding.labelTxId.text = it
             }
-        })
+        }
 
         // Add click listeners
         binding.addressLabel.setOnClickListener {
             showChooseAddressList(true)
         }
+
+        binding.labelTxId.setOnClickListener{
+            val txUrl = getExplorerTxUrl(binding.labelTxId.text.toString())
+            showDialogToOpenUrl(binding.root.context, txUrl)
+        }
+
+
         binding.buttonShareTx.setOnClickListener {
             val txUrl = getExplorerTxUrl(binding.labelTxId.text.toString())
             val sendIntent: Intent = Intent().apply {
@@ -137,6 +149,7 @@ class SendFundsFragment : SubmitTransactionFragment() {
             val shareIntent = Intent.createChooser(sendIntent, null)
             startActivity(shareIntent)
         }
+
         binding.buttonDismiss.setOnClickListener {
             val succeeded = findNavController().popBackStack()
             // back stack might be empty when coming from a deep link
@@ -176,12 +189,12 @@ class SendFundsFragment : SubmitTransactionFragment() {
         }
         KeyboardVisibilityEvent.setEventListener(
             requireActivity(),
-            viewLifecycleOwner,
-            { keyboardOpen ->
-                if (keyboardOpen && binding.amount.editText?.hasFocus() == true) {
-                    ensureAmountVisibleDelayed()
-                }
-            })
+            viewLifecycleOwner
+        ) { keyboardOpen ->
+            if (keyboardOpen && binding.amount.editText?.hasFocus() == true) {
+                ensureAmountVisibleDelayed()
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -191,7 +204,7 @@ class SendFundsFragment : SubmitTransactionFragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.menu_scan_qr) {
-            IntentIntegrator.forSupportFragment(this).initiateScan(setOf(IntentIntegrator.QR_CODE))
+            IntentIntegrator.forSupportFragment(this).setBeepEnabled(false).initiateScan(setOf(IntentIntegrator.QR_CODE))
             return true
         } else {
             return super.onOptionsItemSelected(item)
@@ -291,15 +304,16 @@ class SendFundsFragment : SubmitTransactionFragment() {
 
     private fun startPayment() {
         val checkResponse = viewModel.uiLogic.checkCanMakePayment()
-
         if (checkResponse.receiverError) {
             binding.tvReceiver.error = getString(R.string.error_receiver_address)
             binding.tvReceiver.editText?.requestFocus()
         }
+
         if (checkResponse.amountError) {
             binding.amount.error = getString(R.string.error_amount)
             if (!checkResponse.receiverError) binding.amount.editText?.requestFocus()
         }
+
         if (checkResponse.tokenError) {
             binding.labelTokenAmountError.visibility = View.VISIBLE
             setFocusToEmptyTokenAmountInput()
@@ -415,3 +429,4 @@ class SendFundsFragment : SubmitTransactionFragment() {
 
     }
 }
+

@@ -37,9 +37,9 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        KeyboardVisibilityEvent.registerEventListener(this, { isOpen ->
+        KeyboardVisibilityEvent.registerEventListener(this) { isOpen ->
             navView.visibility = if (isOpen) View.GONE else View.VISIBLE
-        })
+        }
 
         if (savedInstanceState == null) {
             handleIntent(navController)
@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun scanQrCode() {
-        IntentIntegrator(this).initiateScan(setOf(IntentIntegrator.QR_CODE))
+        IntentIntegrator(this).setBeepEnabled(false).initiateScan(setOf(IntentIntegrator.QR_CODE))
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

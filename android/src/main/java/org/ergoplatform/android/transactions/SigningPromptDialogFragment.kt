@@ -59,7 +59,7 @@ class SigningPromptDialogFragment : BottomSheetDialogFragment() {
             }
         })
         binding.buttonScanSignedTx.setOnClickListener {
-            IntentIntegrator.forSupportFragment(this).initiateScan(setOf(IntentIntegrator.QR_CODE))
+            IntentIntegrator.forSupportFragment(this).setBeepEnabled(false).initiateScan(setOf(IntentIntegrator.QR_CODE))
         }
         binding.buttonScanNextQr.setOnClickListener {
             binding.qrCodePager.currentItem = binding.qrCodePager.currentItem + 1

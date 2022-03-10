@@ -6,20 +6,24 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
-        android:background="@drawable/rectangle_tool_bar"
-        android:elevation="2dp">
+        android:background="@drawable/rectangle_tool_bar">
 
         <TextView
             style="@style/TextAppearance.App.Headline1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             android:text="@string/button_send" />
 
     </FrameLayout>
+
+
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scroll_view"
@@ -285,6 +289,7 @@
                         android:layout_marginTop="@dimen/half_horizontal_margin"
                         android:gravity="center"
                         android:textStyle="bold"
+                        android:textColor="@drawable/link_color_change"
                         app:layout_constraintEnd_toStartOf="@id/button_share_tx"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/desc_tx_done"

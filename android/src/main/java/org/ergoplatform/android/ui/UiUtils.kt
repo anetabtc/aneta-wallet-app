@@ -1,9 +1,7 @@
 package org.ergoplatform.android.ui
 
-import android.content.ClipData
-import android.content.ClipboardManager
-import android.content.Context
-import android.content.Intent
+import android.content.*
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
@@ -12,6 +10,7 @@ import android.text.method.LinkMovementMethod
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -111,16 +110,24 @@ fun setQrCodeToImageView(imageViewQrCode: ImageView, text: String, width: Int, h
 
 fun showDialogWithCopyOption(context: Context, message: String) {
     MaterialAlertDialogBuilder(context)
+        .setBackground(context.getDrawable(R.drawable.rectangle))
         .setMessage(message)
-        .setPositiveButton(R.string.button_copy) { _, _ ->
-            val clipboard = ContextCompat.getSystemService(
-                context,
-                ClipboardManager::class.java
-            )
-            val clip = ClipData.newPlainText("", message)
-            clipboard?.setPrimaryClip(clip)
-        }
         .setNegativeButton(R.string.label_dismiss, null)
+        .show()
+}
+
+fun showDialogToOpenUrl(context: Context, url: String){
+    MaterialAlertDialogBuilder(context)
+        .setBackground(context.getDrawable(R.drawable.rectangle))
+        .setMessage(R.string.label_leave_app)
+        .setNegativeButton(R.string.label_dismiss, null)
+        .setPositiveButton(R.string.button_yes){_, _ ->
+            val browserIntent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse(url)
+            )
+            context.startActivity(browserIntent)
+        }
         .show()
 }
 

@@ -5,22 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:padding="@dimen/activity_horizontal_margin"
     android:background="@drawable/background_gradient"
     tools:context=".wallet.RestoreWalletFragmentDialog">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:backgroundTint="@color/card_background"
-        android:layout_margin="@dimen/activity_horizontal_margin">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
             android:animateLayoutChanges="true"
             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/ex"
+                style="@style/TextAppearance.App.Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                tools:ignore="MissingConstraints" />
 
             <TextView
                 android:id="@+id/title_restore_wallet"
@@ -38,44 +42,51 @@
                 style="@style/TextAppearance.App.Body1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:layout_marginBottom="@dimen/half_horizontal_margin"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+
+                android:layout_gravity="center"
                 android:text="@string/intro_restore_wallet" />
 
+
+
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:id="@+id/tv_mnemonic"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:errorEnabled="true"-->
+<!--                app:errorIconDrawable="@null">-->
+
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:gravity="top"-->
+<!--                    android:imeOptions="actionDone"-->
+<!--                    android:inputType="textMultiLine|textVisiblePassword"-->
+<!--                    android:lines="8" />-->
+
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
             <TextView
-                android:id="@+id/label_word_list_hint"
-                style="@style/TextAppearance.App.Body1"
+                android:id="@+id/restore_error"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:text="@string/label_restore_wallet_word_list" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tv_mnemonic"
+                android:text="Entered mnemonic phrases are incorrect. Please, try again!"
+                android:textColor="@color/biometric_error_color"
+                android:visibility="gone"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mnemonic_input_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:errorEnabled="true"
-                app:errorIconDrawable="@null">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="top"
-                    android:imeOptions="actionDone"
-                    android:inputType="textMultiLine|textVisiblePassword"
-                    android:lines="8" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
+                tools:listitem="@layout/mnemonic_input_layout"/>
             <Button
                 android:id="@+id/button_restore"
                 style="?attr/materialButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
+                android:layout_marginTop="16dp"
+                android:layout_gravity="center|bottom"
                 android:elegantTextHeight="true"
                 android:text="@string/button_restore" />
 
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
 </androidx.core.widget.NestedScrollView>

@@ -58,7 +58,7 @@ class AddReadOnlyWalletFragmentDialog : FullScreenFragmentDialog() {
         }
 
         binding.tvWalletAddress.setEndIconOnClickListener {
-            IntentIntegrator.forSupportFragment(this).initiateScan(setOf(IntentIntegrator.QR_CODE))
+            IntentIntegrator.forSupportFragment(this).setBeepEnabled(false).initiateScan(setOf(IntentIntegrator.QR_CODE))
         }
     }
 

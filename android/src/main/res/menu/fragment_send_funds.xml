@@ -6,5 +6,6 @@
         android:icon="@drawable/ic_qr_code_scanner_24"
         android:title="@string/label_scan_qr"
         app:iconTint="@color/text_color"
-        app:showAsAction="always" />
+        app:showAsAction="always"
+        />
 </menu>

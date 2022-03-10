@@ -253,6 +253,7 @@
                 android:id="@+id/container_debug_information"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/settings_card_color"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:visibility="gone">
 
@@ -264,7 +265,7 @@
 
                     <Button
                         android:id="@+id/button_debug_information"
-                        style="@style/Widget.App.Button.PrimaryTint"
+                        style="@style/Widget.App.Button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/activity_vertical_margin"
