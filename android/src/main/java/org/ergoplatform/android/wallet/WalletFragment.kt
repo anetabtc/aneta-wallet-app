@@ -79,6 +79,11 @@ class WalletFragment : Fragment() {
                     }
                     lastWalletList = walletAdapter.walletList
 
+                    if (walletList.isEmpty())
+                        setHasOptionsMenu(false)
+                    else
+                        setHasOptionsMenu(true)
+
                     binding.swipeRefreshLayout.visibility =
                         if (walletList.isEmpty()) View.GONE else View.VISIBLE
                     binding.emptyView.root.visibility =
@@ -376,3 +381,5 @@ class WalletDiffCallback(val oldList: List<Wallet>, val newList: List<Wallet>) :
     }
 
 }
+// layer catch demand glory used umbrella rebuild surface aim student increase coconut spend village depend
+//lesson history double olympic lift tip topple today crumble cactus pitch suggest myth craft cruise
