@@ -6,9 +6,12 @@ import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.EditText
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -56,6 +59,7 @@ class RestoreWalletFragmentDialog : FullScreenFragmentDialog() {
         return binding.root
     }
 
+
     inner class AndroidRestoreWalletUiLogic(context: Context) :
         RestoreWalletUiLogic(AndroidStringProvider(context)) {
 
@@ -95,39 +99,76 @@ class RestoreWalletFragmentDialog : FullScreenFragmentDialog() {
 
         override fun onBindViewHolder(holder: MnemonicInputViewHolder, position: Int) {
             holder.bind(position)
+
         }
 
         override fun getItemCount(): Int {
             return 15
         }
 
+
         inner class MnemonicInputViewHolder(val binding: MnemonicInputLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
             fun bind(position: Int) {
-                val pos = if (position % 2 == 0) position + 1-position/2 else position + 1 + (itemCount - position)/2
+                val pos = getWrappedPosition(position)
                 binding.number.text = (pos).toString()
 
                 binding.tvMnemonic.addTextChangedListener(object : TextWatcher {
                     override fun afterTextChanged(s: Editable?) {
                         val newPhrase: String = binding.tvMnemonic.text.toString().lowercase()
-//                        binding.tvMnemonic.setText(newPhrase)
                         if (newPhrase.isEmpty()) {
                             binding.tvMnemonic.setBackgroundResource(R.drawable.rectangle_white_with_red_border)
                             binding.number.setTextColor(Color.parseColor("#ff5722"))
-                        }else{
+                        } else {
                             binding.tvMnemonic.setBackgroundResource(R.drawable.rectangle_white)
                             binding.number.setTextColor(binding.tvMnemonic.textColors)
                         }
-                        mnemonicList[pos-1]= newPhrase
+
+                        mnemonicList[pos-1]= newPhrase.trim()
                     }
                     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
                     }
 
                     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
+                        if (count != 0) {
+                            val phrase = s.toString()
+                            if (phrase[phrase.length - 1] == ' ') {
+                                getNextView(position).requestFocus()
+                            }
+                        }
                     }
                 })
+
+                binding.tvMnemonic.setOnEditorActionListener{v, actionId, event ->
+                    return@setOnEditorActionListener when (actionId) {
+                        EditorInfo.IME_ACTION_NEXT -> {
+                            getNextView(position).requestFocus()
+                            true
+                        }
+                        else -> false
+                    }
+                }
+
+
             }
+
+            fun getWrappedPosition(position: Int): Int{
+                return if (position % 2 == 0) position + 1-position/2 else position + 1 + (itemCount - position)/2
+            }
+
+            @SuppressLint("WrongConstant")
+            fun getNextView(position: Int): View{
+                var currentView = binding.tvMnemonic
+                val wrappedPosition = getWrappedPosition(position)
+
+                if(wrappedPosition in 1..7 || wrappedPosition in 9..14)
+                    return currentView.focusSearch(View.FOCUS_DOWN)
+                else currentView = currentView.focusSearch(View.FOCUS_FORWARD) as EditText
+
+                return currentView.focusSearch(View.FOCUS_FORWARD)
+            }
+
+
         }
 
     }
