@@ -121,16 +121,16 @@
 
 <!--                    </com.google.android.material.textfield.TextInputLayout>-->
 
-                    <TextView
-                        android:id="@+id/tv_fiat"
-                        style="@style/TextAppearance.App.Fiat"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone"
-                        app:layout_constraintEnd_toEndOf="@id/amount"
-                        app:layout_constraintTop_toBottomOf="@id/amount"
-                        tools:text="@string/label_fiat_amount"
-                        tools:visibility="visible" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/tv_fiat"-->
+<!--                        style="@style/TextAppearance.App.Fiat"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:visibility="gone"-->
+<!--                        app:layout_constraintEnd_toEndOf="@id/public_address"-->
+<!--                        app:layout_constraintTop_toBottomOf="@id/public_address"-->
+<!--                        tools:text="@string/label_fiat_amount"-->
+<!--                        tools:visibility="visible" />-->
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/purpose"
@@ -139,7 +139,7 @@
                         android:layout_marginTop="@dimen/half_horizontal_margin"
                         android:hint="@string/label_purpose"
                         android:visibility="gone"
-                        app:layout_constraintTop_toBottomOf="@id/tv_fiat">
+                        app:layout_constraintTop_toBottomOf="@id/public_address">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
