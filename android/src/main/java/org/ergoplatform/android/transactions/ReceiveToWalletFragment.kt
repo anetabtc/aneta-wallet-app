@@ -46,7 +46,7 @@ class ReceiveToWalletFragment : Fragment(), AddressChooserCallback {
         // Inflate the layout for this fragment
         _binding = FragmentReceiveToWalletBinding.inflate(inflater, container, false)
 
-        binding.amount.editText?.addTextChangedListener(MyTextWatcher())
+//        binding.amount.editText?.addTextChangedListener(MyTextWatcher())
         binding.purpose.editText?.addTextChangedListener(MyTextWatcher())
 
         return binding.root
@@ -132,13 +132,13 @@ class ReceiveToWalletFragment : Fragment(), AddressChooserCallback {
     }
 
     private fun getTextToShare() =
-        uiLogic.getTextToShare(getInputAmount(), binding.purpose.editText?.text.toString())
+        uiLogic.getTextToShare(binding.purpose.editText?.text.toString())
 
-    private fun getInputAmount(): Double {
-        val amountStr = binding.amount.editText?.text.toString()
-        val amountVal = inputTextToDouble(amountStr)
-        return amountVal
-    }
+//    private fun getInputAmount(): Double {
+//        val amountStr = binding.amount.editText?.text.toString()
+//        val amountVal = inputTextToDouble(amountStr)
+//        return amountVal
+//    }
 
     inner class MyTextWatcher : TextWatcher {
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -151,12 +151,6 @@ class ReceiveToWalletFragment : Fragment(), AddressChooserCallback {
 
         override fun afterTextChanged(s: Editable?) {
             refreshQrCode()
-            val fiatString = uiLogic.getFiatAmount(
-                getInputAmount(), AndroidStringProvider(requireContext())
-            )
-
-            binding.tvFiat.visibility = if (!fiatString.isNullOrEmpty()) View.VISIBLE else View.GONE
-            binding.tvFiat.text = fiatString
         }
 
     }

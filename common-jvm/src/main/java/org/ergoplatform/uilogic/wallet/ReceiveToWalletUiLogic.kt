@@ -32,27 +32,26 @@ class ReceiveToWalletUiLogic {
             ?: wallet?.getDerivedAddressEntity(0)
     }
 
-    fun getTextToShare(amount: Double, purpose: String): String? {
+    fun getTextToShare(purpose: String): String? {
         return address?.publicAddress?.let {
             getExplorerPaymentRequestAddress(
                 it,
-                amount,
                 purpose
             )
         }
     }
 
-    fun getFiatAmount(ergAmount: Double, textProvider: StringProvider): String? {
-        val nodeConnector = NodeConnector.getInstance()
-        return if (nodeConnector.fiatCurrency.isNotEmpty()) {
-            textProvider.getString(
-                STRING_LABEL_FIAT_AMOUNT,
-                formatFiatToString(
-                    ergAmount * nodeConnector.fiatValue.value.toDouble(),
-                    nodeConnector.fiatCurrency, textProvider
-                )
-            )
-        } else
-            null
-    }
+//    fun getFiatAmount(ergAmount: Double, textProvider: StringProvider): String? {
+//        val nodeConnector = NodeConnector.getInstance()
+//        return if (nodeConnector.fiatCurrency.isNotEmpty()) {
+//            textProvider.getString(
+//                STRING_LABEL_FIAT_AMOUNT,
+//                formatFiatToString(
+//                    ergAmount * nodeConnector.fiatValue.value.toDouble(),
+//                    nodeConnector.fiatCurrency, textProvider
+//                )
+//            )
+//        } else
+//            null
+//    }
 }
