@@ -26,12 +26,12 @@ import org.ergoplatform.android.databinding.FragmentSendFundsTokenItemBinding
 import org.ergoplatform.android.ui.*
 import org.ergoplatform.persistance.TokenPrice
 import org.ergoplatform.persistance.WalletToken
-import org.ergoplatform.tokens.isSingularToken
 import org.ergoplatform.transactions.PromptSigningResult
 import org.ergoplatform.utils.formatFiatToString
 import org.ergoplatform.utils.formatTokenPriceToString
 import org.ergoplatform.wallet.addresses.getAddressLabel
 import org.ergoplatform.wallet.getNumOfAddresses
+import org.ergoplatform.tokens.isSingularToken as isSingularToken
 
 
 /**
