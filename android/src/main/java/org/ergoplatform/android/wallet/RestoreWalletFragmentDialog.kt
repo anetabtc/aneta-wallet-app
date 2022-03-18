@@ -152,7 +152,7 @@ class RestoreWalletFragmentDialog : FullScreenFragmentDialog() {
 
             }
 
-            fun getWrappedPosition(position: Int): Int{
+            private fun getWrappedPosition(position: Int): Int{
                 return if (position % 2 == 0) position + 1-position/2 else position + 1 + (itemCount - position)/2
             }
 

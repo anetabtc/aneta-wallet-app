@@ -6,6 +6,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="lightgrey">#BBBBBB</color>
     <color name="windowbackground">#EEEEEE</color>
+    <color name="cardview_background">@color/cardview_light_background</color>
     <color name="darkgrey">#888888</color>
     <color name="background">#E5E5E5</color>
     <color name="logo_back">#64B6E6</color>
