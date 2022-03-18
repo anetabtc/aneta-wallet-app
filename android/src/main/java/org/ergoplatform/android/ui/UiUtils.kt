@@ -47,12 +47,17 @@ fun TextView.enableLinks() {
     movementMethod = LinkMovementMethod.getInstance()
 }
 
-fun openUrlWithBrowser(context: Context, url: String) {
-    val browserIntent = Intent(
-        Intent.ACTION_VIEW,
-        Uri.parse(url)
-    )
-    context.startActivity(browserIntent)
+fun openUrlWithBrowser(context: Context, url: String): Boolean {
+    return try {
+        val browserIntent = Intent(
+            Intent.ACTION_VIEW,
+            Uri.parse(url)
+        )
+        context.startActivity(browserIntent)
+        true
+    } catch (t: Throwable) {
+        false
+    }
 }
 
 /**
@@ -161,4 +166,11 @@ fun BottomSheetDialogFragment.expandBottomSheetOnShow() {
 
 fun postDelayed(delayMs: Long, r: Runnable) {
     Handler(Looper.getMainLooper()).postDelayed(r, delayMs)
+}
+
+fun TextView.setTextAndVisibility(newText: String?) {
+    newText?.let {
+        visibility = View.VISIBLE
+        text = it
+    } ?: run { visibility = View.GONE }
 }
