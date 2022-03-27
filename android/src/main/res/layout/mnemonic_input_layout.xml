@@ -9,7 +9,7 @@
     <EditText
         android:id="@+id/tv_mnemonic"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="48dp"
         android:background="@drawable/rectangle_white"
         android:paddingLeft="35dp"
         android:textColor="@color/text"

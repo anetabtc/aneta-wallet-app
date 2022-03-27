@@ -104,8 +104,8 @@
 
                         <ImageView
                             android:id="@+id/telegram"
-                            android:layout_width="47dp"
-                            android:layout_height="47dp"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
                             android:clickable="true"
                             android:contentDescription="@string/telegram_button_content_description"
                             android:src="@drawable/telegram"
@@ -125,8 +125,8 @@
 
                         <ImageView
                             android:id="@+id/discord"
-                            android:layout_width="47dp"
-                            android:layout_height="47dp"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
                             android:clickable="true"
                             android:contentDescription="@string/dicsord_button_content_description"
                             android:src="@drawable/discord"
