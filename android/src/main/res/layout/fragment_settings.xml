@@ -226,6 +226,7 @@
                 android:id="@+id/container_nft"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/settings_card_color"
                 android:layout_marginTop="@dimen/activity_vertical_margin">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
@@ -244,7 +245,7 @@
 
                     <Button
                         android:id="@+id/button_download_content"
-                        style="@style/Widget.App.Button.PrimaryTint"
+                        style="@style/Widget.App.Button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"

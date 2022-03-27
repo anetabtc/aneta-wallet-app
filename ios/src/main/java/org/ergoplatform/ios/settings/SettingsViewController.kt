@@ -148,6 +148,7 @@ class SettingsViewController : CoroutineViewController() {
         button.addOnTouchUpInsideListener { _, _ ->
             preferences.downloadNftContent = !preferences.downloadNftContent
             button.setTitle(getButtonLabel(), UIControlState.Normal)
+
         }
 
         container.addSubview(desc)
