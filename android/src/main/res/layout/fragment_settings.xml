@@ -155,6 +155,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/half_horizontal_margin"
+                        android:height="48dp"
                         android:gravity="center"
                         android:text="@string/desc_coingecko" />
 
