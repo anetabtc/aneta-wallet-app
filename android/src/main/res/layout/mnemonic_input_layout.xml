@@ -15,6 +15,7 @@
         android:textColor="@color/text"
         android:imeOptions="actionNext"
         android:lines="1"
+        android:contentDescription=""
         android:inputType="textNoSuggestions"
         tools:ignore="MissingConstraints" />
 
@@ -26,6 +27,7 @@
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
         android:text="1"
+        android:labelFor="@+id/tv_mnemonic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
