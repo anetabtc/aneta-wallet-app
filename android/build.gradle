@@ -7,6 +7,14 @@ plugins {
 
 android {
 
+    signingConfigs {
+        debug {
+            storeFile file('/Users/ozhek/Developer/android-studio/aneta-keys/ozhek.uu')
+            storePassword 'Olzha$top1'
+            keyAlias 'ozhek_aneta'
+            keyPassword 'Olzha$top1'
+        }
+    }
     compileSdkVersion 31
     buildToolsVersion "30.0.3"
 
@@ -16,7 +24,7 @@ android {
         minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
-        versionName "1.0.1"
+        versionName '1.0.3'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -66,7 +74,7 @@ android {
 dependencies {
     implementation project(path: ':common-jvm')
 
-    def room_version = "2.3.0"
+    def room_version = "2.4.0-alpha03"
 
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
 
