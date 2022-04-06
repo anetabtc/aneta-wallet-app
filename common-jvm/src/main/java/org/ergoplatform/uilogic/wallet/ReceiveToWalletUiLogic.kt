@@ -1,6 +1,5 @@
 package org.ergoplatform.uilogic.wallet
 
-import org.ergoplatform.NodeConnector
 import org.ergoplatform.getExplorerPaymentRequestAddress
 import org.ergoplatform.persistance.Wallet
 import org.ergoplatform.persistance.WalletAddress

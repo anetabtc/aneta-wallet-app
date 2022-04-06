@@ -104,9 +104,10 @@
 
                         <ImageView
                             android:id="@+id/telegram"
-                            android:layout_width="47dp"
-                            android:layout_height="47dp"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
                             android:clickable="true"
+                            android:contentDescription="@string/telegram_button_content_description"
                             android:src="@drawable/telegram"
                             app:layout_constraintEnd_toEndOf="@id/linearLayout"
                             app:layout_constraintStart_toStartOf="parent"
@@ -124,9 +125,10 @@
 
                         <ImageView
                             android:id="@+id/discord"
-                            android:layout_width="47dp"
-                            android:layout_height="47dp"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
                             android:clickable="true"
+                            android:contentDescription="@string/dicsord_button_content_description"
                             android:src="@drawable/discord"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/linearLayout"
@@ -153,6 +155,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/half_horizontal_margin"
+                        android:height="48dp"
                         android:gravity="center"
                         android:text="@string/desc_coingecko" />
 
@@ -217,6 +220,38 @@
                             android:text="@string/button_dark_mode_night" />
                     </androidx.appcompat.widget.LinearLayoutCompat>
                 </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/container_nft"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/settings_card_color"
+                android:layout_marginTop="@dimen/activity_vertical_margin">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/activity_vertical_margin"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextAppearance.App.Body1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="@string/desc_download_content" />
+
+                    <Button
+                        android:id="@+id/button_download_content"
+                        style="@style/Widget.App.Button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="@dimen/activity_vertical_margin"
+                        android:text="@string/button_download_content_on" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
