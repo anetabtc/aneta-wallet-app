@@ -8,9 +8,8 @@
     <dimen name="margin_and_half">24dp</dimen>
     <dimen name="big_icon_size">58dp</dimen>
     <dimen name="medium_icon_size">36dp</dimen>
-    <dimen name="body1_textsize">18sp</dimen>
-    <dimen name="body2_textsize">16sp</dimen>
-    <dimen name="headline1_textsize">28sp</dimen>
-    <dimen name="headline2_textsize">24sp</dimen>
-    <dimen name="mnemonic_input_height">48sp</dimen>
+    <dimen name="body1_textsize">16sp</dimen>
+    <dimen name="body2_textsize">14sp</dimen>
+    <dimen name="headline1_textsize">24sp</dimen>
+    <dimen name="headline2_textsize">22sp</dimen>
 </resources>

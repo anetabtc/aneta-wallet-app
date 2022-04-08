@@ -9,12 +9,13 @@
     <EditText
         android:id="@+id/tv_mnemonic"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/rectangle_white"
         android:paddingLeft="35dp"
         android:textColor="@color/text"
         android:imeOptions="actionNext"
         android:lines="1"
+        android:textSize="@dimen/body1_textsize"
         android:contentDescription=""
         android:inputType="textNoSuggestions"
         tools:ignore="MissingConstraints" />
