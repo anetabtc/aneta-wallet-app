@@ -103,7 +103,7 @@ class RestoreWalletFragmentDialog : FullScreenFragmentDialog() {
         }
 
         override fun getItemCount(): Int {
-            return 15
+            return 24
         }
 
 
